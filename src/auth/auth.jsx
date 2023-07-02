@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { onAuthStateChanged, GoogleAuthProvider, signInWithRedirect, signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged, GoogleAuthProvider, signInWithRedirect, signOut, getRedirectResult } from "firebase/auth";
 import { auth } from "../config/firebase";
 
 const provider = new GoogleAuthProvider();
@@ -25,13 +25,17 @@ const signOutUser = () => {
 };
 
 export const Auth = () => {
+	const [user, setUser] = useState(null);
+
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			if (user) {
 				console.log("User is signed in:");
 				console.log(user);
+				setUser(user);
 			} else {
 				console.log("User is not signed in");
+				setUser(null);
 			}
 		});
 
@@ -39,6 +43,18 @@ export const Auth = () => {
 			unsubscribe();
 		};
 	}, []);
+
+	useEffect(() => {
+		getRedirectResult(auth)
+			.then((result) => {
+				console.log(result);
+				setUser(result?.user);
+				console.log(user);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, [user]);
 
 	return (
 		<div>
