@@ -4,23 +4,15 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { set, ref, onValue, remove, getDatabase, push, update } from "firebase/database";
 import { auth } from "./config/firebase";
-import { onAuthStateChanged, GoogleAuthProvider, signInWithRedirect, signOut, getRedirectResult, signInAnonymously } from "firebase/auth";
+import { onAuthStateChanged, getRedirectResult, signInAnonymously } from "firebase/auth";
+import { signInWithGoogle, signOutUser } from "./js/login";
 
 const database = getDatabase();
-const provider = new GoogleAuthProvider();
 
 export const App = () => {
 	const [notes, setNotes] = useState([]);
 	const [user, setUser] = useState(auth.currentUser);
 	const [isAnonymous, setIsAnonymous] = useState(false);
-
-	const signInWithGoogle = () => {
-		signInWithRedirect(auth, provider).catch((error) => console.error(error));
-	};
-
-	const signOutUser = () => {
-		signOut(auth).catch((error) => console.error(error));
-	};
 
 	useEffect(() => {
 		getRedirectResult(auth)
