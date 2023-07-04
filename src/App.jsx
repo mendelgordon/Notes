@@ -85,38 +85,63 @@ export const App = () => {
 
 	return (
 		<>
-			<nav className="navbar bg-body-tertiary">
-				<div className="container-fluid">
-					<a className="navbar-brand" href="#">
-						<img src="../favicon_io/favicon-32x32.png" alt="Logo" width="24" height="24" className="d-inline-block align-text-top" />
-						<span className="ms-2">Notes</span>
-					</a>
-					<div className="d-flex">
-						<button className="btn btn-primary me-2" onClick={handleAddNote}>
-							Add Note
-						</button>
-						{auth.currentUser && !isAnonymous ? (
-							<button className="btn btn-primary" onClick={signOutUser}>
-								Sign out
-							</button>
-						) : (
-							<button className="btn btn-primary" onClick={signInWithGoogle}>
-								Sign in with Google
-							</button>
-						)}
+			<nav
+				className="navbar"
+				style={{
+					backgroundColor: "rgb(248, 249, 250)",
+				}}
+			>
+				<div className="container-fluid" style={{ gap: 5 }}>
+					<div className="navbar-brand">
+						<img
+							src="../favicon_io/favicon-32x32.png"
+							alt="Logo"
+							width="24"
+							height="24"
+							style={{
+								display: "inline-block",
+								verticalAlign: "text-top",
+							}}
+						/>
+						<span style={{ marginLeft: "0.5rem" }}>Notes</span>
 					</div>
+					<button className="btn btn-primary" onClick={handleAddNote}>
+						Add Note
+					</button>
+					{auth.currentUser && !isAnonymous ? (
+						<button className="btn btn-primary" onClick={signOutUser}>
+							Sign out
+						</button>
+					) : (
+						<button className="btn btn-primary" onClick={signInWithGoogle}>
+							Sign in with Google
+						</button>
+					)}
 				</div>
 			</nav>
 			<main className="container">
-				<div className="vstack gap-3 mt-3">
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						gap: "1rem",
+						marginTop: "1rem",
+					}}
+				>
 					{notes.map(({ id, content }) => (
-						<div className="col gy-2" key={id}>
-							<div className="position-relative">
-								<TextareaAutosize className="form-control form-control-lg" value={content} onChange={(e) => handleNoteChange(e, id)} />
-								<button className="btn position-absolute top-0 end-0" onClick={() => handleNoteDelete(id)}>
-									<Trash alt="Delete note" />
-								</button>
-							</div>
+						<div key={id} style={{ position: "relative" }}>
+							<TextareaAutosize className="form-control form-control-lg" value={content} onChange={(e) => handleNoteChange(e, id)} />
+							<button
+								className="btn"
+								onClick={() => handleNoteDelete(id)}
+								style={{
+									position: "absolute",
+									top: 0,
+									right: 0,
+								}}
+							>
+								<Trash alt="Delete note" />
+							</button>
 						</div>
 					))}
 				</div>
