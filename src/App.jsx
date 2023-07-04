@@ -6,6 +6,7 @@ import { auth } from "./config/firebase";
 import { onAuthStateChanged, getRedirectResult, signInAnonymously } from "firebase/auth";
 import { signInWithGoogle, signOutUser } from "./js/login";
 import { ReactComponent as Trash } from "./Trash.svg";
+import { ReactComponent as Memo } from "./Memo.svg";
 
 const database = getDatabase();
 
@@ -93,8 +94,7 @@ export const App = () => {
 			>
 				<div className="container-fluid" style={{ gap: 5 }}>
 					<div className="navbar-brand">
-						<img
-							src="../favicon_io/favicon-32x32.png"
+						<Memo
 							alt="Logo"
 							width="24"
 							height="24"
