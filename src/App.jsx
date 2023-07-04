@@ -5,7 +5,7 @@ import { set, ref, onValue, remove, getDatabase, push, update } from "firebase/d
 import { auth } from "./config/firebase";
 import { onAuthStateChanged, getRedirectResult, signInAnonymously } from "firebase/auth";
 import { signInWithGoogle, signOutUser } from "./js/login";
-import { ReactComponent as Trash } from "./trash.svg";
+import { ReactComponent as Trash } from "./Trash.svg";
 
 const database = getDatabase();
 
