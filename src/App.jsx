@@ -5,7 +5,7 @@ import { set, ref, onValue, remove, getDatabase, push, update } from "firebase/d
 import { auth } from "./config/firebase";
 import { onAuthStateChanged, getRedirectResult, signInAnonymously } from "firebase/auth";
 import { signInWithGoogle, signOutUser } from "./js/login";
-import trash from "..public/trash.svg";
+import { ReactComponent as Trash } from "./trash.svg";
 
 const database = getDatabase();
 
@@ -114,7 +114,7 @@ export const App = () => {
 							<div className="position-relative">
 								<TextareaAutosize className="form-control form-control-lg" value={content} onChange={(e) => handleNoteChange(e, id)} />
 								<button className="btn position-absolute top-0 end-0" onClick={() => handleNoteDelete(id)}>
-									<img src={trash} alt="Delete note" />
+									<Trash alt="Delete note" />
 								</button>
 							</div>
 						</div>
