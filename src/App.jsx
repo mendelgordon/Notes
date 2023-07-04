@@ -1,11 +1,11 @@
 import "./scss/styles.scss";
 import { useState, useEffect } from "react";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { set, ref, onValue, remove, getDatabase, push, update } from "firebase/database";
 import { auth } from "./config/firebase";
 import { onAuthStateChanged, getRedirectResult, signInAnonymously } from "firebase/auth";
 import { signInWithGoogle, signOutUser } from "./js/login";
+import trash from "..public/trash.svg";
 
 const database = getDatabase();
 
@@ -114,7 +114,7 @@ export const App = () => {
 							<div className="position-relative">
 								<TextareaAutosize className="form-control form-control-lg" value={content} onChange={(e) => handleNoteChange(e, id)} />
 								<button className="btn position-absolute top-0 end-0" onClick={() => handleNoteDelete(id)}>
-									<i className="bi bi-trash"></i>
+									<img src={trash} alt="Delete note" />
 								</button>
 							</div>
 						</div>
