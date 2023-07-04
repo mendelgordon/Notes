@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAv0Ym6pqkZDfM2BTjXDgGOz6VVlJV3djs",
@@ -8,11 +7,11 @@ const firebaseConfig = {
   projectId: "notes-70da2",
   storageBucket: "notes-70da2.appspot.com",
   messagingSenderId: "831679024451",
-  appId: "1:831679024451:web:cadacc4a0dfedbc04db3f6"
+  appId: "1:831679024451:web:cadacc4a0dfedbc04db3f6",
+  database: "https://notes-70da2-default-rtdb.firebaseio.com/",
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
 
-export { auth, db };
+export { auth };
