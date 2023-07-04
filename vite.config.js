@@ -5,5 +5,5 @@ import htmlPurge from "vite-plugin-html-purgecss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), svgr(), htmlPurge()],
+	plugins: [react(), svgr(), htmlPurge.default()],
 });
